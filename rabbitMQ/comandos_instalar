@@ -1,0 +1,13 @@
+sudo apt update
+sudo apt install rabbitmq-server -y
+
+sudo systemctl enable rabbitmq-server
+sudo systemctl start rabbitmq-server
+
+#criando o usuario
+sudo rabbitmqctl add_user videobox 123456
+sudo rabbitmqctl set_permissions -p / videobox ".*" ".*" ".*"
+
+#dashboard
+http://IP_RABBITMQ:15672
+
