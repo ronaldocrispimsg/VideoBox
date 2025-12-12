@@ -1,4 +1,4 @@
-#no front poe... para assistir os videos do stream repo
+/* Mo front poe... para assistir os videos do stream repo
 var player = new Hls();
 player.loadSource("http://IP_STREAM/streams/<video_id>/playlist.m3u8");
 player.attachMedia(videoElement);
@@ -14,4 +14,4 @@ if (Hls.isSupported()) {
     hls.loadSource("http://18.230.10.55/streams/abc123/playlist.m3u8");
     hls.attachMedia(video);
 }
-
+*/
