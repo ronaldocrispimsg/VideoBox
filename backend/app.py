@@ -73,7 +73,9 @@ async def stop_stream() -> None:
 # UPLOAD DE VIDEO
 @app.post("/upload")
 async def upload(file: UploadFile):
-    video_id = f"{uuid.uuid4()}_{file.filename}"
+    sanitized_name = "".join(c for c in file.filename if c.isalnum() or c in {"-", "_", "."}).strip(".")
+    unique_id = uuid.uuid4().hex[:12]
+    video_id = f"{unique_id}_{sanitized_name or 'video'}"
     filepath = os.path.join(VIDEO_STORAGE, video_id)
     download_url = f"{FILE_BASE_URL}/videos/{video_id}/file"
 

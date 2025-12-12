@@ -3,6 +3,7 @@ from pathlib import Path
 
 import aiofiles
 from fastapi import FastAPI, UploadFile, Form, HTTPException
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -43,3 +44,18 @@ async def complete_upload(video_id: str, payload: CompletePayload):
 
     stream_url = f"{STREAM_BASE_URL}/{video_id}/{playlist}"
     return {"stream_url": stream_url}
+
+
+@app.get("/streams/{video_id}/{relative_path:path}")
+async def serve_stream_file(video_id: str, relative_path: str):
+    target_path = _target_path(video_id, relative_path)
+    if not target_path.exists() or not target_path.is_file():
+        raise HTTPException(status_code=404, detail="Arquivo não encontrado")
+
+    media_type = "video/mp2t"
+    if target_path.suffix == ".m3u8":
+        media_type = "application/vnd.apple.mpegurl"
+    elif target_path.suffix == ".mp4":
+        media_type = "video/mp4"
+
+    return FileResponse(target_path, media_type=media_type)

@@ -4,11 +4,10 @@ map $http_upgrade $connection_upgrade {
 }
 
 server {
-    listen 80;
-    server_name _;
+    server_name videobox.myvnc.com;
 
     # permitir uploads grandes vindos do frontend
-    client_max_body_size ${CLIENT_MAX_BODY_SIZE};
+    client_max_body_size 2G;
 
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
@@ -22,24 +21,47 @@ server {
 
     # Frontend Next.js (rota padrão)
     location / {
-        proxy_pass ${FRONTEND_UPSTREAM};
+        proxy_pass http://172.31.73.117:3000/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
+    }
+
+    location /streams/ {
+    proxy_pass http://172.31.76.247:8001/;
     }
 
     # APIs (prefixo /api) são direcionadas ao backend FastAPI
     location /api/ {
         rewrite ^/api/(.*)$ /$1 break;
-        proxy_pass ${BACKEND_UPSTREAM};
+        proxy_pass http://172.31.70.86:8000/;
         proxy_http_version 1.1;
     }
 
     # Painel do RabbitMQ (HTTP + websockets em /ws)
     location /message/ {
-        proxy_pass ${RABBIT_UPSTREAM}/;
+        proxy_pass http://172.31.71.19:15672/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
     }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/videobox.myvnc.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/videobox.myvnc.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+
+server {
+    if ($host = videobox.myvnc.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name videobox.myvnc.com;
+    return 404; # managed by Certbot
 }

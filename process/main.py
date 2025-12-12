@@ -89,7 +89,7 @@ async def _upload_to_repo(video_id: str, source_dir: str, playlist_name: str) ->
 
 @broker.subscriber("video.uploaded")
 async def process_video(event):
-    video_id = event["video_id"]
+    video_id = event["video_id"].replace("/", "_")
     download_url = event.get("download_url")
     source_path = event.get("path")
 

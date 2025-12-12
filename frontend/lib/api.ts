@@ -9,8 +9,8 @@ export interface VideoRecord {
   download_url?: string
 }
 
-const DEFAULT_API_BASE = "http://172.31.70.86:8000/api"
-const DEFAULT_STREAM_BASE = "http://172.31.76.247:8001"
+const DEFAULT_API_BASE = "/api"
+const DEFAULT_STREAM_BASE = "/streams"
 
 const API_BASE = (process.env.NEXT_PUBLIC_API_BASE ?? DEFAULT_API_BASE).replace(/\/$/, "")
 const STREAM_API_BASE = (process.env.NEXT_PUBLIC_STREAM_BASE ?? DEFAULT_STREAM_BASE).replace(/\/$/, "")
@@ -24,7 +24,6 @@ function createRequester(baseUrl: string) {
       },
       cache: "no-store",
     })
-
     if (!response.ok) {
       const detail = await safeParseError(response)
       throw new Error(detail ?? `Falha ao acessar ${path}: ${response.status}`)
@@ -50,11 +49,11 @@ async function safeParseError(response: Response): Promise<string | null> {
 }
 
 export async function listVideos(): Promise<VideoRecord[]> {
-  return backendRequest<VideoRecord[]>("/videos")
+  return await backendRequest<VideoRecord[]>("/videos")
 }
 
 export async function fetchVideo(videoId: string): Promise<VideoRecord> {
-  return backendRequest<VideoRecord>(`/videos/${videoId}`)
+  return await backendRequest<VideoRecord>(`/videos/${videoId}`)
 }
 
 export async function uploadVideoFile(file: File): Promise<VideoRecord> {
