@@ -63,12 +63,13 @@ export function ListItem({
   title,
   children,
   href,
+  prefetch = false,
   ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+}: React.ComponentPropsWithoutRef<"li"> & { href: string; prefetch?: boolean }) {
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
-        <Link href={href}>
+        <Link href={href} prefetch={prefetch}>
           <div className="text-sm leading-none font-medium">{title}</div>
           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
             {children}
