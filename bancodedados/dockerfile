@@ -1,0 +1,17 @@
+# Use a imagem oficial do PostgreSQL
+FROM postgres:15.15-trixie
+
+# Defina as variáveis de ambiente para o banco de dados
+ENV POSTGRES_USER=videobox
+ENV POSTGRES_PASSWORD=123456
+ENV POSTGRES_DB=videobox_db
+
+# Exponha a porta padrão do PostgreSQL
+EXPOSE 5432
+
+# Copie os arquivos de inicialização, se necessário
+ COPY ./init.sql /docker-entrypoint-initdb.d/
+
+# Comando padrão para rodar o PostgreSQL
+CMD ["postgres"]
+
