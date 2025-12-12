@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { listVideos, type VideoRecord } from "@/lib/api"
+import { listVideos, resolveStreamUrl, type VideoRecord } from "@/lib/api"
 import { FeaturedVideo } from "./components/FeaturedVideo"
 import { StatusBadge } from "./components/StatusBadge"
 
@@ -28,7 +28,7 @@ export default async function Home() {
   }
 
   const stats = buildStats(videos)
-  const highlight = videos.find((video) => video.status === "ready" && video.stream_url)
+  const highlight = videos.find((video) => video.status === "ready" && resolveStreamUrl(video))
 
   return (
     <main className="flex w-full max-w-6xl flex-col gap-12 px-6 py-12 lg:px-0">

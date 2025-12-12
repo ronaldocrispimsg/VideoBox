@@ -2,8 +2,8 @@ FROM nginx:1.25-alpine
 
 RUN apk add --no-cache bash gettext
 
-ENV FRONTEND_UPSTREAM=http://frontend:3000 \
-    BACKEND_UPSTREAM=http://backend:8000 \
+ENV FRONTEND_UPSTREAM=http://172.31.73.117:3000 \
+    BACKEND_UPSTREAM=http://172.31.70.86:8000 \
     RABBIT_UPSTREAM=http://rabbitmq:15672 \
     CLIENT_MAX_BODY_SIZE=2G
 

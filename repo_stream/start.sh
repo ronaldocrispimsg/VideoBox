@@ -1,0 +1,1 @@
+sudo docker run -d --name repo_stream -p 8001:8001 repo_stream

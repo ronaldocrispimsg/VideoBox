@@ -11,19 +11,16 @@ load_dotenv()
 STREAM_PATH = Path(os.getenv("STREAM_PATH", "/var/www/html/streams"))
 STREAM_PATH.mkdir(parents=True, exist_ok=True)
 
-STREAM_BASE_URL = os.getenv("STREAM_BASE_URL", "http://STREAM_REPO_IP/streams").rstrip("/")
+STREAM_BASE_URL = os.getenv("STREAM_BASE_URL", "http://172.31.76.247/streams").rstrip("/")
 
 app = FastAPI()
-
 
 class CompletePayload(BaseModel):
     playlist_name: str = "playlist.m3u8"
 
-
 def _target_path(video_id: str, relative_path: str) -> Path:
     safe_relative = relative_path.lstrip("/").replace("..", "")
     return STREAM_PATH / video_id / safe_relative
-
 
 @app.post("/videos/{video_id}/segments")
 async def receive_segment(video_id: str, file: UploadFile, relative_path: str = Form(...)):
