@@ -1,0 +1,27 @@
+```
+nano /etc/systemd/system/<serviço>.service
+```
+
+----------------conteúdo--------------------
+
+[Unit]
+Description=VideoBox frontend container
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+ExecStart=/opt/videobox/start.sh
+ExecStop=/usr/bin/docker stop frontend
+ExecStopPost=/usr/bin/docker rm frontend
+
+[Install]
+WantedBy=multi-user.target
+
+------------------Salvar----------------------
+
+sudo systemctl daemon-reload
+sudo systemctl enable videobox.service
+sudo systemctl start videobox.service

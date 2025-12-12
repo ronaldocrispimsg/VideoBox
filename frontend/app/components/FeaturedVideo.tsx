@@ -1,11 +1,13 @@
 "use client"
 
 import type { VideoRecord } from "@/lib/api"
+import { resolveStreamUrl } from "@/lib/api"
 import VideoPlayer from "./VideoPlayer"
 import { StatusBadge } from "./StatusBadge"
 
 export function FeaturedVideo({ video }: { video: VideoRecord }) {
-  if (!video.stream_url) return null
+  const streamUrl = resolveStreamUrl(video)
+  if (!streamUrl) return null
 
   return (
     <section className="w-full rounded-3xl border bg-linear-to-br from-zinc-900 via-black to-zinc-900 p-8 text-white shadow-lg">
@@ -21,7 +23,7 @@ export function FeaturedVideo({ video }: { video: VideoRecord }) {
             Esse vídeo já está disponível para todas as regiões da CDN distribuída do VideoBox.
           </p>
           <a
-            href={video.stream_url}
+            href={streamUrl}
             target="_blank"
             rel="noreferrer"
             className="mt-6 inline-flex items-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-black transition hover:bg-zinc-100"
@@ -30,7 +32,7 @@ export function FeaturedVideo({ video }: { video: VideoRecord }) {
           </a>
         </div>
         <div className="flex-1">
-          <VideoPlayer src={video.stream_url!} />
+          <VideoPlayer src={streamUrl} />
         </div>
       </div>
     </section>
