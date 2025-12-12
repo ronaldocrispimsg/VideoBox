@@ -1,0 +1,10 @@
+Serviço         Tipo        IP 
+
+RabbitMQ        privado     172.31.71.19
+backend         privado     172.31.70.86 
+frontend        privado     --
+k3s master      privado     172.31.77.47
+nginx           público     --
+process         privado     172.31.71.244
+database        privado     --
+repo_stream     privado     172.31.76.247
