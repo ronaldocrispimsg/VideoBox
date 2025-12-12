@@ -34,7 +34,7 @@ function createRequester(baseUrl: string) {
   }
 }
 
-const backendRequest = createRequester(API_BASE)
+export const backendRequest = createRequester(API_BASE)
 export const streamRequest = createRequester(STREAM_API_BASE)
 
 async function safeParseError(response: Response): Promise<string | null> {
@@ -84,7 +84,7 @@ export function resolveStreamUrl(video: VideoRecord): string | undefined {
     const parsed = new URL(video.stream_url)
     return `${STREAM_API_BASE}${parsed.pathname}`
   } catch {
-    if (video.stream_url.starts_with("/")) {
+    if (video.stream_url.startsWith("/")) {
       return `${STREAM_API_BASE}${video.stream_url}`
     }
     return video.stream_url
