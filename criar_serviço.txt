@@ -13,7 +13,7 @@ Requires=docker.service
 Type=simple
 Restart=always
 RestartSec=10
-ExecStart=/opt/videobox/start.sh
+ExecStart=/bin/bash /home/admin/VideoBox/servico/start.sh
 ExecStop=/usr/bin/docker stop frontend
 ExecStopPost=/usr/bin/docker rm frontend
 

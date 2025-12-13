@@ -1,1 +1,0 @@
- docker run -d --name backend -p 8000:8000 backend
