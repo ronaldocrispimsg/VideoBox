@@ -1,0 +1,1 @@
+docker run -d --name database --restar unless-stopped -p 5432:5432 -v database_pgdata:/var/lib/postgresql/data database

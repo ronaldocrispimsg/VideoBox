@@ -1,4 +1,3 @@
-# Use a imagem oficial do PostgreSQL
 FROM postgres:15.15-trixie
 
 ENV POSTGRES_USER=videobox
@@ -8,4 +7,3 @@ ENV POSTGRES_DB=videobox_db
 EXPOSE 5432
 
 CMD ["postgres"]
-
