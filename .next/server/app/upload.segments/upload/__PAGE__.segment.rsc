@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[82583,["/_next/static/chunks/796e69ae18b2784c.js","/_next/static/chunks/b70c2acfe835be27.js","/_next/static/chunks/43aa9b68e338ae12.js","/_next/static/chunks/2aa0468b4c7570c1.js"],"UploadForm"]
+3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/247eb132b7f7b574.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"iUKS44zxnq0N-dO_hCRIv","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"flex w-full max-w-4xl flex-col items-center gap-8 px-6 py-12 lg:px-0","children":[["$","div",null,{"className":"text-center","children":[["$","p",null,{"className":"text-sm uppercase tracking-[0.2em] text-emerald-600","children":"Upload distribuído"}],["$","h1",null,{"className":"mt-2 text-3xl font-semibold text-zinc-900","children":"Envie um vídeo para o VideoBox"}],["$","p",null,{"className":"mt-2 text-muted-foreground","children":"O arquivo fica temporariamente no backend, dispara o processamento no worker e segue para streaming no repo_stream."}]]}],["$","$L2",null,{}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/2aa0468b4c7570c1.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
