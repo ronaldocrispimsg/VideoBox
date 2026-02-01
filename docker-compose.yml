@@ -37,8 +37,8 @@ services:
     build:
       context: ./frontend
     container_name: videobox-frontend
-    environment:
-      NEXT_PUBLIC_API_BASE: http://gateway/api
+    # environment:
+    #   NEXT_PUBLIC_API_BASE: http://gateway/api
     depends_on:
       - backend
     ports:

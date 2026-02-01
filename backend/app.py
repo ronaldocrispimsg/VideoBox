@@ -8,6 +8,7 @@ from fastapi import FastAPI, UploadFile, HTTPException
 from fastapi.responses import FileResponse
 from faststream import FastStream
 from faststream.rabbit import RabbitBroker
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -34,6 +35,13 @@ app = FastAPI()
 state_lock = asyncio.Lock()
 video_state: Dict[str, Dict[str, Any]] = {}
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ou seu domínio
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def _load_state():
     if os.path.exists(VIDEO_STATE_FILE):

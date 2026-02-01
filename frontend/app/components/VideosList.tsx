@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState, useTransition } from "react"
+import { useMemo, useState, useTransition, useEffect } from "react"
 import { listVideos, type VideoRecord, type VideoStatus } from "@/lib/api"
 import { VideoCard } from "./VideoCard"
 
@@ -33,6 +33,10 @@ export function VideosList({ initialVideos }: { initialVideos: VideoRecord[] }) 
       }
     })
   }
+
+  useEffect(() => {
+    refresh()
+  },[])
 
   return (
     <section className="flex w-full flex-col gap-6">

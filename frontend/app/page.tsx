@@ -1,7 +1,11 @@
+"use client"
+
+
 import Link from "next/link"
 import { listVideos, type VideoRecord } from "@/lib/api"
 import { FeaturedVideo } from "./components/FeaturedVideo"
 import { StatusBadge } from "./components/StatusBadge"
+import { useEffect, useState } from "react"
 
 const CARDS = [
   { label: "Total de vídeos", key: "total" },
@@ -19,13 +23,21 @@ function buildStats(videos: VideoRecord[]) {
   }
 }
 
-export default async function Home() {
-  let videos: VideoRecord[] = []
-  try {
-    videos = await listVideos()
-  } catch {
-    // mantém lista vazia
-  }
+export default function Home() {
+  const [videos, setVideos] = useState<VideoRecord[]>([])
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const videosList = await listVideos()
+        if (videosList) setVideos(videosList)
+      } catch {
+        console.log("não foi possível buscar os vídeos")
+      }
+    }
+
+    fetchVideos()
+  }, [])
 
   const stats = buildStats(videos)
   const highlight = videos.find((video) => video.status === "ready" && video.stream_url)

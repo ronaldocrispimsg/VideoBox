@@ -9,7 +9,7 @@ export interface VideoRecord {
   download_url?: string
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000/api"
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost/api"
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, {
@@ -35,17 +35,17 @@ async function safeParseError(response: Response): Promise<string | null> {
       return String((data as Record<string, unknown>).detail)
     }
   } catch {
-    // Ignora erros de parsing
+    console.log("Erro de parsing")
   }
   return null
 }
 
 export async function listVideos(): Promise<VideoRecord[]> {
-  return request<VideoRecord[]>("/videos")
+  return await request<VideoRecord[]>("/videos")
 }
 
 export async function fetchVideo(videoId: string): Promise<VideoRecord> {
-  return request<VideoRecord>(`/videos/${videoId}`)
+  return await request<VideoRecord>(`/videos/${videoId}`)
 }
 
 export async function uploadVideoFile(file: File): Promise<VideoRecord> {
