@@ -182,7 +182,7 @@ docker-compose up --build
 * **[Marcio Martins](https://github.com/mferrreira)**
   Frontend, Process, K3s, Docker
 
-* **[Vinícius Rodrigues](https://github.com/vinirodriguesz)**
+* **[Vinicius Rodrigues](https://github.com/vinirodriguesz)**
   NGINX
   
 ---
@@ -197,5 +197,5 @@ Uso acadêmico e educacional.
 ## 🙏 Agradecimentos
 
 Agradecemos ao **Prof. Adriano Antunes** pela excelente condução da disciplina e pelos conhecimentos transmitidos, e ao **IFNMG – Campus Januária** pela oportunidade de desenvolvimento do projeto.
-
+ 
 ---
