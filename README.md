@@ -182,7 +182,7 @@ docker-compose up --build
 * **[Marcio Martins](https://github.com/mferrreira)**
   Frontend, Process, K3s, Docker
 
-* **Vinícius Rodrigues](https://github.com/vinirodriguesz)**
+* **[Vinícius Rodrigues](https://github.com/vinirodriguesz)**
   NGINX
   
 ---
