@@ -175,14 +175,18 @@ docker-compose up --build
 
 ## 👥 Equipe
 
-* **@ronaldocrispimsg**
+
+* **Ronaldo Crispim**
   Backend, RepoStream, RabbitMQ
+  GitHub: [Ronaldo Crispim](https://github.com/ronaldocrispimsg/)
 
-* **@mferrreira**
+* **Márcio Martins**
   Frontend, Process, K3s, Docker
+  GitHub: [Marcio Martins](https://github.com/mferrreira)
 
-* **@vinirodriguesz**
+* **Vinícius Rodrigues**
   NGINX
+  GitHub: [Vinícius Rodrigues](https://github.com/vinirodriguesz)
 
 ---
 
